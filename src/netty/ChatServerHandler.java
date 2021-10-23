@@ -1,5 +1,6 @@
 package netty;
 
+import client.Client;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -16,6 +17,7 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
         Channel incoming = ctx.channel();
         channels.add(incoming);
         channels.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " has joined\r\n");
+//        System.out.println("Client " + incoming.remoteAddress() + " has joined\r\n");
 //        for (Channel channel : channels) {
 //            channel.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + " has joined\r\n");
 //        }
@@ -27,6 +29,7 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
         Channel incoming = ctx.channel();
         channels.writeAndFlush("[SERVER] - " + incoming.remoteAddress() + "has left\r\n");
         channels.remove(incoming);
+//        System.out.println("Client " + incoming.remoteAddress() + " has left\r\n");
     }
 
     @Override
@@ -44,7 +47,8 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
             throws Exception {
-        cause.printStackTrace();
+        Channel incoming = ctx.channel();
+//        System.out.println("Error for incoming.remoteAddress()," + cause.getMessage() +"\r\n");
         ctx.close();
     }
 }

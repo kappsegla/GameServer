@@ -8,7 +8,12 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class Server {
 
     public static void main(String[] args) throws InterruptedException {
-        new Server(8000).run();
+        int port = 8000;
+        for (int i = 0; i < args.length; i++) {
+            if( args[i].equals("--port") && i+1 < args.length)
+                port = Integer.parseInt(args[i+1]);
+        }
+        new Server(port).run();
     }
 
     private final int port;

@@ -2,7 +2,6 @@ package client;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class Client {
 
@@ -20,8 +19,6 @@ public class Client {
                 String line = reader.readLine();    // reads a line of text
                 System.out.println(line);
             }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -27,7 +27,7 @@ public class ChatServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel incoming = ctx.channel();
-        channels.writeAndFlush("[SERVER] - " + remoteAddress(incoming) + "has left\r\n");
+        channels.writeAndFlush("[SERVER] - " + remoteAddress(incoming) + " has left\r\n");
         channels.remove(incoming);
 //        System.out.println("Client " + incoming.remoteAddress() + " has left\r\n");
     }
